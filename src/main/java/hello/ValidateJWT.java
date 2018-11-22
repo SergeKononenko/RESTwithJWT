@@ -15,17 +15,6 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 
 public class ValidateJWT {
 	
-/*	public static void main(String[] args) {
-        String token = "eyJhbGciOiJIUzI1NiJ9."
-        		+ "eyJzdWIiOiIxMjM0NTY3ODkiLCJuYW1lIjoiSm9obiIsImlhdCI6MTU0MjgzMTAwNSwiZXhwIjoxNTQyODQxMDA1LCJpc3MiOiJhdXRoMCIsImF1ZCI6ImV4dGVybmFsIn0."
-        		+ "mubmquN4YMRDdeCwRZSX_qFyRy5jGzob7fW0VfSQQr8";
-		isValid(token);
-		
-		
-    }*/
-	
-	
-	
 	public static boolean isValid(String token) {
 		
 		if(token.startsWith("Bearer "))
@@ -66,7 +55,7 @@ public class ValidateJWT {
 	        for (Entry<String, Claim> pair : claims.entrySet()){
 	            //iterate over the pairs
 	            String value = pair.getValue().asString();
-	            if(pair.getKey() == "exp" || pair.getKey() == "iat")
+	            if(pair.getKey() == "iat" || pair.getKey() == "exp")
 	                value = pair.getValue().asDate().toString();
 	            
 	            out.append("\n"+pair.getKey()+" "+value);            
