@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Create Your JWT</title>
+</head>
+<body>
+	<h1>Create Your JWT ....</h1>
+	<hr>
+	<form action="http://localhost:8080/create_token" method="POST">
+		 <p>Subject: <input  type="text" name="subject"><br></p>
+		 <p>Duration (Hours): <select name = "duration">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					</select><br>
+			</p>		
+					
+		 <p>Name: <input  type="text" name="name"><br><p/>
+		 <p>Audience: <input  type="text" name="audience"><br></p>
+		  
+		  
+		  <p><input type="submit" value="Submit"></p>
+	</form>
+</body>
+</html>
