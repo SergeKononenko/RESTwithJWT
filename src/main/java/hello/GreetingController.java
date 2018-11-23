@@ -13,6 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import instanceClasses.CurrentReading;
+import instanceClasses.CurrentTemperature;
+import instanceClasses.Greeting;
+import instanceClasses.HashStorage;
+import instanceClasses.NoAccess;
+import instanceClasses.Response;
+import instanceClasses.SecurityConsts;
 import jwt_generation.GenerateJWT;
 
 @RestController
@@ -22,7 +29,7 @@ public class GreetingController {
 	private final AtomicLong counter = new AtomicLong();
 	private CurrentReading reading = new CurrentReading(0, 0, "zoneId", 0, "zoneName", "buildingId", "twCustomHeader1");
 	private HashStorage storage = new HashStorage("zoneId", "buildingId", "setTemperature", 0.0);
-	
+
 	@RequestMapping(value = "/greeting", method = RequestMethod.GET)
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
@@ -45,7 +52,8 @@ public class GreetingController {
 
 	@RequestMapping(value = "/create_token", method = RequestMethod.POST)
 	public GenerateJWT jwt(@RequestParam(value = "subject") String subject,
-			@RequestParam(value = "duration") long duration, @RequestParam(value = "name") String name,
+			@RequestParam(value = "duration") long duration, 
+			@RequestParam(value = "name") String name,
 			@RequestParam(value = "audience") String audience,
 			@RequestParam(value = "issuer", defaultValue = SecurityConsts.ISS) String issuer
 
@@ -101,24 +109,14 @@ public class GreetingController {
 			return new Response("Failure!");
 		}
 
-		
-
 	}
 
 	@RequestMapping(value = "/readCurrentSettings", method = RequestMethod.GET)
 	public CurrentTemperature getTemp(@RequestBody String stringToParse) {
-				
+
 		String temp = "" + reading.getSetTemperature();
 
 		return new CurrentTemperature(temp);
 	}
 
-	
-	
-
-	
-	
-	
-	
-	
 }

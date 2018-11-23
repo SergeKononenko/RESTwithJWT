@@ -1,4 +1,4 @@
-package hello;
+package instanceClasses;
 
 public class CurrentTemperature {
 
@@ -12,7 +12,5 @@ public class CurrentTemperature {
 	public String getCurrentTemperature() {
 		return temp;
 	}
-	
-	
-	
+
 }

@@ -1,4 +1,4 @@
-package hello;
+package instanceClasses;
 
 public class Greeting {
 
