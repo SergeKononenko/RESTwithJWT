@@ -21,7 +21,8 @@ public class GreetingController {
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
 	private CurrentReading reading = new CurrentReading(0, 0, "zoneId", 0, "zoneName", "buildingId", "twCustomHeader1");
-
+	private HashStorage storage = new HashStorage("zoneId", "buildingId", "setTemperature", 0.0);
+	
 	@RequestMapping(value = "/greeting", method = RequestMethod.GET)
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
@@ -97,17 +98,27 @@ public class GreetingController {
 			return new Response("Ok!");
 		} catch (JSONException e) {
 			e.printStackTrace();
+			return new Response("Failure!");
 		}
 
-		return null;
+		
 
 	}
 
-	@RequestMapping(value = "/getCurrentReadings", method = RequestMethod.GET)
-	public String getTemp(@RequestParam(value = "name", defaultValue = "World") String name) {
+	@RequestMapping(value = "/readCurrentSettings", method = RequestMethod.GET)
+	public CurrentTemperature getTemp(@RequestBody String stringToParse) {
+				
 		String temp = "" + reading.getSetTemperature();
 
-		return temp;
+		return new CurrentTemperature(temp);
 	}
 
+	
+	
+
+	
+	
+	
+	
+	
 }
