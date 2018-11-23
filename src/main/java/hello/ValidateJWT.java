@@ -52,14 +52,14 @@ public class ValidateJWT {
 	        
 	        StringBuffer out = new StringBuffer();
 	        
-	        for (Entry<String, Claim> pair : claims.entrySet()){
-	            //iterate over the pairs
-	            String value = pair.getValue().asString();
-	            if(pair.getKey() == "iat" || pair.getKey() == "exp")
-	                value = pair.getValue().asDate().toString();
-	            
-	            out.append("\n"+pair.getKey()+" "+value);            
-	        }
+		for (Entry<String, Claim> pair : claims.entrySet()) {
+			// iterate over the pairs
+			String value = pair.getValue().asString();
+			if (pair.getKey() == "iat" || pair.getKey() == "exp")
+				value = pair.getValue().asDate().toString();
+
+			out.append("\n" + pair.getKey() + " " + value);
+		}
 	        
 	        Logger logger = (Logger) LoggerFactory.getLogger(ValidateJWT.class);
 	        logger.info(out.toString());

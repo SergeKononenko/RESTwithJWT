@@ -84,7 +84,7 @@ public class GreetingController {
 
 	@PostMapping("/storeCurrentReadings")
 
-	public CurrentReading storeReadings(@RequestBody String stringToParse) {
+	public Response storeReadings(@RequestBody String stringToParse) {
 
 		double setTemperature;
 
@@ -94,7 +94,7 @@ public class GreetingController {
 
 			setTemperature = (double) jsonObj.getDouble("setTemperature");
 			reading.setSetTemperature(setTemperature);
-			return reading;
+			return new Response("Ok!");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
